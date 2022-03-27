@@ -52,7 +52,7 @@ resource db2 'Microsoft.Sql/servers/databases@2021-02-01-preview' = {
 
 resource sqlfw 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
   parent: sql
-  name: 'AllowAllMicrosoftAzureIps'
+  name: 'AllowOfficeIP'
   properties: {
     endIpAddress: allowedIP
     startIpAddress: allowedIP
