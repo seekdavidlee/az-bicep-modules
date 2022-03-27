@@ -2,6 +2,7 @@ param stackName string
 param keyVaultName string
 param sharedResourceGroup string
 param location string = 'centralus'
+param allowedIP string
 
 var tags = {
   'stack-name': 'contoso-shared-sql'
@@ -16,6 +17,7 @@ resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
 module sql './sql.bicep' = {
   name: 'deploySQL'
   params: {
+    allowedIP: allowedIP
     stackName: stackName
     sqlUsername: kv.getSecret('contoso-sql-server-username')
     sqlPassword: kv.getSecret('contoso-sql-server-password')

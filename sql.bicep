@@ -5,6 +5,7 @@ param tags object
 param sqlUsername string
 @secure()
 param sqlPassword string
+param allowedIP string
 
 resource sql 'Microsoft.Sql/servers@2021-02-01-preview' = {
   name: stackName
@@ -53,8 +54,8 @@ resource sqlfw 'Microsoft.Sql/servers/firewallRules@2021-02-01-preview' = {
   parent: sql
   name: 'AllowAllMicrosoftAzureIps'
   properties: {
-    endIpAddress: '0.0.0.0'
-    startIpAddress: '0.0.0.0'
+    endIpAddress: allowedIP
+    startIpAddress: allowedIP
   }
 }
 
